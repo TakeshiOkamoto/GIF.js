@@ -8,7 +8,7 @@ If there are more colors than 256 colors, TMedianCut is reduce the color.
 ## How to use 
 
 Japanese  
-[test now](test  now)  
+[http://www.petitmonte.com/javascript/howto_gif_js.html](http://www.petitmonte.com/javascript/howto_gif_js.html)  
 
 English
 
