@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="GIF.js"></script>
+<script>
+var src_img,dst_canvas,dst_ctx;
+
+window.onload = function () {  
+  src_img = document.getElementById("SrcImage");
+  dst_canvas = document.getElementById("DstCanvas");
+  dst_ctx = dst_canvas.getContext("2d");        
+}
+
+function save(){  
+      
+  // Generate ImageData 
+  // (ImageDataの生成)
+  var imagedata = dst_ctx.getImageData(0,0,dst_canvas.width,dst_canvas.height); 
+  
+  // Obtain color information of image 
+  // (画像のカラー情報の取得)
+  var colors = getColorInfo(imagedata);
+  
+  // Reduce the color to 256 colors 
+  // when the number of colors of the image is larger than 256 colors
+  // (画像の色数が256色より多い場合は256色に減色する)
+  if(colors.length > 256){
+    var MedianCut = new TMedianCut(imagedata,colors);
+    MedianCut.run(256,true);
+  } 
+  
+  // Output in GIF format 
+  // (GIF形式で出力する)
+  var GIFWriter = new TGIFWriter(imagedata);
+  GIFWriter.SaveToFile('untitle.gif');
+}  
+
+function OpenFile(event) {  
+  var files;
+  var reader = new FileReader();
+  
+  if(event.target.files){
+    files = event.target.files;
+  }else{ 
+    files = event.dataTransfer.files;   
+  }    
+
+  reader.onload = function (event) {
+    
+    src_img.onload = function (){  
+      dst_canvas.width  = src_img.width;
+      dst_canvas.height = src_img.height;        
+      dst_ctx.drawImage(src_img,0,0); 
+    };      
+       
+    src_img.onerror  = function (){
+      alert('This file can not be read.');  
+      run_flg = false;      
+    };
+
+    src_img.src = reader.result;       
+  };
+  
+  if (files[0]){    
+    reader.readAsDataURL(files[0]); 
+    document.getElementById("inputfile").value = '';
+  }
+}       
+</script>
+</head>
+<body>
+<input type="file" id="inputfile" accept="image/jpeg,image/png,image/gif,image/bmp,image/x-icon" onchange="OpenFile(event);">
+<button onclick="save();" style="font-size:24px;">Save</button> 
+<p>[Original image]</p>
+<img id="SrcImage" style="display:none;">
+<canvas id="DstCanvas"></canvas>
+</body>
+</html>
