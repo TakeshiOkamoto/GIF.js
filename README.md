@@ -32,6 +32,9 @@ GIFWriter.SaveToFile('untitle.gif',r,g,b);
 
 ```
 
+TMedianCut details　
+[https://github.com/TakeshiOkamoto/MedianCut.js](https://github.com/TakeshiOkamoto/MedianCut.js) 
+
 ## Caution
 If the HTML file is not uploaded to the server, it may not work depending on browser specifications.
 
