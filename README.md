@@ -2,7 +2,7 @@
 Output images in JavaScript as GIF format. with color reduction function.  
 
 ## Support format  
-2/4/8/16/32/64/128/256 color (transparent correspondence)  
+2/4/8/16/32/64/128/256 color (support transparent)  
 If there are more colors than 256 colors, TMedianCut is reduce the color.
 
 ## How to use 
