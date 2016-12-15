@@ -36,7 +36,7 @@ GIFWriter.SaveToFile('untitle.gif',r,g,b);
 
 ```
 
-TMedianCut details　
+TMedianCut details  
 [https://github.com/TakeshiOkamoto/MedianCut.js](https://github.com/TakeshiOkamoto/MedianCut.js) 
 
 ## Caution
